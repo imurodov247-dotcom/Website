@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+</head>
+<body>
+    <h1>Portfolio</h1>
+
+    {% for project in projects %}
+        <div>
+            <h2>{{ project.title }}</h2>
+            <img src="{{ project.image.url }}" width="300">
+            <p>{{ project.description }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
+
+<style>
+body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card img:hover {
+    transform: scale(1.05);
+}
+</style>
+
+<div class="grid">
+    {% for project in projects %}
+    <div class="card">
+        <a href="/project/{{ project.id }}/">
+            <img src="{{ project.image.url }}">
+        </a>
+        <h3>{{ project.title }}</h3>
+    </div>
+    {% endfor %}
+</div>
